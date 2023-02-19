@@ -1,13 +1,17 @@
 describe("Scenario 2 - Order should be done alphabetically", () => {
+  // #<number> search
   const allNumbers = []
   let allNumbersSorted = []
   let totalListCount
+  // space vessel Name
+  let allSpaceVessels = []
+  let allSpaceVesselsSorted = []
+
   beforeEach("Visit SpaceX Launches site", () => {
     cy.testSetup()
   })
 
-  it("Checks the sort in Descending order", () => {
-    cy.wait("@launches")
+  it("Checks the sort in Descending order by #<number>", () => {
     cy.contains("Sort Ascending").click()
     cy.get(".launch-item").then(($items) => {
       totalListCount = $items.length
@@ -22,11 +26,27 @@ describe("Scenario 2 - Order should be done alphabetically", () => {
       })
   })
 
+  it("Creates 2 arrays containing space vessel name", () => {
+    cy.contains("Sort Ascending").click()
+    cy.get(".launch-item")
+      .find(".launch-item__label")
+      .each(($items) => {
+        const spaceVessel = $items[0].innerText
+        allSpaceVessels.push(spaceVessel)
+        allSpaceVesselsSorted.push(spaceVessel)
+      })
+  })
+
+  it("Compares arrays of space vessel names", () => {
+    cy.log(allSpaceVessels)
+    cy.log(allSpaceVesselsSorted)
+    expect(allSpaceVessels.toString()).to.equals(allSpaceVesselsSorted.sort((a, b) => (a < b ? 1 : -1)).toString())
+  })
+
   // The 3 `it()` blocks below were included as I did these to check the logic - matching the #number to the index as the test above fails on the first assertion.
 
   // This shows the ascending order breaks at #165
   it("Checks the sort in ascending order", () => {
-    cy.wait("@launches")
     cy.get(".launch-item")
       .find(".launch-item__number")
       .each(($items, index) => {

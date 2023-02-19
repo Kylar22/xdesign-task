@@ -36,11 +36,13 @@ There are 3 test files to cover the 3 scenarios.  I have used the standard Cypre
 - `scenario2-filter.cy.js`
 - `scenario3-sort.cy.js`
 
-Scenario 3 is a failing test as it does not meet the BDD acceptance criteria.
+Scenario 3 is a failing test as it does not meet the BDD acceptance criteria, either sorting by the #number or the vessel name
 
 Scenario 3 stated *"Order should be done alphabetically"* looking at the test site the was ordered by `#<number>` so I based the test logic on that.
 
-If that was an error on my part I think the logic used could be applied in a similar way by creating an array copying it with an appropriate sort and then comparing with the original.
+If that was an error on my part I think the logic used could be applied in a similar way by creating an array copying it with an appropriate sort and then comparing with the original.  This would be using the `launch-item__label` class.
+
+I have put this solution in the 2nd and 3rd `it()` blocks to show the logic for an alphabetic descending comparison, although the sort does require some refining.
 
 ## Project Setup
 
@@ -81,7 +83,7 @@ After speaking to Andrius about your implementations of Cypress using BDD I did 
 
 Other items to consider in a project like this:
 
-- Implementing Page objects
+- Implementing Page objects to remove hard coded data e.g. year `2015` in the filter scenario
 - Accessibility testing using the cypress-axe plugin
 - Lighthouse performance metrics using the `@cypress-audit/lighthouse` plugin
 - Using `dotenv` for environment variables and credentials where appropriate

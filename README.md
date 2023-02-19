@@ -14,7 +14,7 @@
 
 ## Installation
 
-The Git repo is set up using Node and NPM, which are pre-requisites for installation
+The project is set up using Node and NPM, which are pre-requisites for installation
 
 To install the project:
 

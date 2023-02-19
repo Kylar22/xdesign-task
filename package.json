@@ -1,0 +1,38 @@
+{
+  "name": "xdesign-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "rm -r ./cypress/report/*.json || cypress run",
+    "test": "npx cypress run --reporter mochawesome",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "merge-reports": "npx mochawesome-merge ./cypress/report/*.json>./cypress/report/spacex-report.json",
+    "html-report": "npx marge ./cypress/report/spacex-report.json --reportDir ./ --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kylar22/xdesign-task.git"
+  },
+  "keywords": [],
+  "author": "Bernard Nash",
+  "license": "ISC",
+  "homepage": "https://github.com/Kylar22/xdesign-task#readme",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^15.1.4",
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.6.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.2.2",
+    "mochawesome-report-generator": "^6.2.0",
+    "prettier": "^2.8.4"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "none",
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 2
+  }
+}

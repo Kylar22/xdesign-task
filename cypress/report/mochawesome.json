@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-02-19T15:16:47.434Z",
+    "end": "2023-02-19T15:16:50.203Z",
+    "duration": 2769,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "973825cf-d329-43d2-a22b-fc785678cae1",
+      "title": "",
+      "fullFile": "cypress\\e2e\\scenario1-pageload.cy.js",
+      "file": "cypress\\e2e\\scenario1-pageload.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "988f0169-d91c-41e1-95ad-ec6399bcff16",
+          "title": "Scenario 1 - Data should load onto the page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Check page loads and launch items exist",
+              "fullTitle": "Scenario 1 - Data should load onto the page Check page loads and launch items exist",
+              "timedOut": null,
+              "duration": 1916,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(\"@launches\");\n// main test\ncy.get(\".launch-item\").should(\"exist\");\n// If a known value will be consistently present\ncy.get(\".launch-list\").children(\".launch-item\").should(\"contain.text\", \"FalconSat\");\n// Example assertions\ncy.url().should(\"contain\", \"https://fe-automation-tool.s3.eu-west-1.amazonaws.com/index.html\");\n// Testing Library\ncy.findByRole(\"img\", {\n  name: /spacex/i\n}).should(\"be.visible\");\ncy.findByRole(\"button\", {\n  name: /reload data/i\n}).should(\"be.visible\");\n// Attribute selector\ncy.get(\"[alt=SpaceX]\").should(\"be.visible\");",
+              "err": {},
+              "uuid": "4afe200e-e566-4fda-9bee-b412911bd0be",
+              "parentUUID": "988f0169-d91c-41e1-95ad-ec6399bcff16",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Checks API response contains an array of ships",
+              "fullTitle": "Scenario 1 - Data should load onto the page Checks API response contains an array of ships",
+              "timedOut": null,
+              "duration": 686,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(\"@launches\");\ncy.get(\"@launches\").then(interception => {\n  const ships = interception.response.body;\n  cy.log(\"Number of ships = \" + ships.length);\n  expect(ships).to.exist;\n  // asserting the number of ships in the GET === #launch items\n  cy.get(\".launch-item\").should(\"have.length\", ships.length);\n});",
+              "err": {},
+              "uuid": "88776b36-c7c2-4f93-94ca-c6c41138e191",
+              "parentUUID": "988f0169-d91c-41e1-95ad-ec6399bcff16",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Checks API response returns a status of 200",
+              "fullTitle": "Scenario 1 - Data should load onto the page Checks API response returns a status of 200",
+              "timedOut": null,
+              "duration": 122,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"@space\").then(interception => {\n  cy.log(interception.response);\n  expect(interception.response.statusCode).to.equal(200);\n});",
+              "err": {},
+              "uuid": "2abeed3f-460b-4963-9332-cd8cc5b4de27",
+              "parentUUID": "988f0169-d91c-41e1-95ad-ec6399bcff16",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4afe200e-e566-4fda-9bee-b412911bd0be",
+            "88776b36-c7c2-4f93-94ca-c6c41138e191",
+            "2abeed3f-460b-4963-9332-cd8cc5b4de27"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2724,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
